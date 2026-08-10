@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Split</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <div class="page">
+        <div class="receipt">
+            <div class="receipt__perforation"></div>
+            <div class ="receipt__body">
+                <h1 class="stamp">New Bill</h1>
+
+                <form id="create-form">
+                    <label>
+                        <span>What's this for?</span>
+                        <input type="text" id="title" placeholder="Dinner at Blaze" required />
+                    </label>
+
+                    <div class="row">
+                        <label>
+                            <span>Tax %</span>
+                            <input type="number" id="tax" step="0.01" min="0" placeholder="10.5" required />
+                        </label>
+
+                        <label>
+                            <span>Tip %</span>
+                            <input type="number" id="tip" step="0.01" min="0" placeholder="15" required />
+                        </label>
+                    </div>
+                    <p class="error" id="form-error" hidden></p>
+                    <button type="submit">Start splitting</button>
+                </form>
+
+                <p class="hint">Tip is evenly split across everyone. Tax follows that each person actually ordered.</p>
+            </div>
+            <div class="receipt__perforation"></div>
+        </div>
+    </div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script src="supabaseClient.js"></script>
+   <script src="index.js"></script>
+</body>
+</html>
