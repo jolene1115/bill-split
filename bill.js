@@ -1,9 +1,10 @@
 
 let participants = [];
+let billId = null;
 
 async function loadBill() {
     const params = new URLSearchParams(window.location.search);
-    const billId = params.get("id");
+    billId = params.get("id");
 
     const {data, error} = await db
         .from("bills")
@@ -46,11 +47,31 @@ function renderParticipants() {
     const participantsListEl = document.getElementById("participants-list");
     const chipsHtml = participants.map((p) => {
         return `<span class="chip">${p.name}</span>`;
-    }).join("");
-
-participantsListEl.innerHTML = chipsHtml;
-
+    }).join("");   
+    participantsListEl.innerHTML = chipsHtml;
 }
+
+    document.getElementById("add-participant").addEventListener("click", async() => {
+        const input = document.getElementById("participant-name")
+        const name = input.value.trim();
+
+        if (!name) return;
+
+        const {data, error} = await db
+            .from("participants")
+            .insert({bill_id: billId, name:name, color: '#FFD966'})
+            .select()
+            .single();
+        
+        if (error) {
+            alert("Couldn't add person: " + error.message);
+            return;
+        }
+
+        participants.push(data);
+        input.value = "";
+        renderParticipants()
+    });
 
 loadBill();
 
