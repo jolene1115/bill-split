@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Split</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="page">
+        <div class="receipt">
+            <div class="receipt__perforation"></div>
+            <div class="receipt__body">
+                <div id="bill-content">
+                    <p class="eyebrow">Bill</p>
+                    <h1 class="stamp" id="bill-title">-</h1>
+                    <div class="line">
+                        <span>Tax</span>
+                        <span id="bill-tax">-</span>
+                    </div>
+                    <div class="line">
+                        <span>Tip (split evenly)</span>
+                        <span id="bill-tip"></span>
+                    </div>
+
+                    <p class="section-title">Who's splitting</p>
+                    <div class="participants-list" id="participants-list"></div>
+                    <div class="add-inline">
+                        <input type="text" id="participant-name" placeholder="Add a person" />
+                        <button type="button" id="add-participant">Add</button>
+                    </div>
+
+                    <p class="section-title">Items</p>
+                    <div id="items-list"></div>
+                    <div class="add-inline">
+                        <input type="text" id="item-name" placeholder="Item name" />
+                        <input type="number" id="item-price" placeholder="Price" step="0.01" min="0" style="max-width: 90px;" />
+                        <button type="button" id="add-item">Add</button>
+                    </div>
+
+                    <p class="section-title">Split</p>
+                    <div id="summary-list"></div>
+                    <p class="unassigned-note" id="unassigned-note" hidden></p>
+
+                    <div class="share">
+                        <input type="text" id="bill-link" readonly/>
+                        <button id="copy-link" class="secondary" type="button" style="width: auto;">Copy</button>
+                    </div>
+                </div>
+            
+                <p class="error" id="bill-error" hidden></p>
+            </div>
+            <div class="receipt__perforation"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="supabaseClient.js"></script>
+    <script src="bill.js"></script>
+
+</body>
+</html>
