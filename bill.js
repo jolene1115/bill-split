@@ -12,6 +12,20 @@ const {data, error} = await db
 
 console.log("data:", data);
 console.log("error:", error);
+
+if (error || !data) {
+    document.getElementById("bill-content").hidden = true;
+    const errorEl = document.getElementById("bill-error");
+    errorEl.textContent = "Couldn't find that bill -- double check the link.";
+    errorEl.hidden = false;
+    return; // stop here, don't try to fill in a bill that does not exist
+}
+document.getElementById("bill-title").textContent = data.title;
+document.getElementById("bill-tax").textContent = `${data.tax_percent}%`;
+document.getElementById("bill-tip").textContent = `${data.tip_percent}%`;
+    
+
 }
 
 loadBill();
+
